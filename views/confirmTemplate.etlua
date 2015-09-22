@@ -1,0 +1,9 @@
+<% render("views.menu") %>
+<% if errors then %>
+  <% render("views.errorWindow") %>
+<% else %>
+  <% render("views.window_open") %>
+  <% render("views.confirmWindow") %>
+  <% render("views.window_close") %>
+<% end %>
+<% render("views.footer") %>

@@ -44,5 +44,6 @@ message_subject: "Subject"
 message_text: "Message"
 message_shipping_date: "Shipping_date"
 message_status: "Status"
+message_email_valid: "Enter a valid email"
 
 footer_text: "© 2015 Copyright - Meganúcleo, S.A. de C.V. All rights reserved."

@@ -1,4 +1,5 @@
 <% if g_route == "send" then %>
+<% dumpvar.print(session) %>
   <a href="<%= url_for(routeHelper:get_application(g_route).."_edit") %>">
     <span class="glyphicon glyphicon-pencil table-actions" aria-hidden="true" title="<%- i_.t('g_edit')  %>"></span>
   </a>

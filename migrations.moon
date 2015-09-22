@@ -1,26 +1,35 @@
-import drop_table,drop_column,rename_column,rename_table,add_column,create_table, types from  require "lapis.db.schema"
+import drop_table,drop_column,rename_column,rename_table,add_column,create_table,alter_column, types from  require "lapis.db.schema"
 
 {
   [1]: =>
     create_table "email_queue", {
       { "id", types.serial }
-      { "uuid", types.text }
+      { "message_id", types.text }
       { "email", types.text }
-      { "shipping_date", types.text }
-      { "status", types.text }
+      { "subject", types.text }
+      { "message", types.text }
+      { "shipping_date", types.time }
       "PRIMARY KEY (id)"
     }
     create_table "email_result", {
       { "id", types.serial }
-      { "uuid", types.text }
+      { "message_id", types.text }
       { "email", types.integer }
-      { "shipping_date", types.boolean }
+      { "subject", types.text }
+      { "message", types.text }
+      { "shipping_date", types.time }
       { "result", types.text }
       "PRIMARY KEY (id)"
     }
-  [2]: =>
-    add_column "email_queue", "subject", types.text
-    add_column "email_queue", "message", types.text
-    add_column "email_result", "subject", types.text
-    add_column "email_result", "message", types.text
+    create_table "messages", {
+      { "id", types.serial }
+      { "name", types.text }
+      { "subject", types.text }
+      { "recipients", types.text }
+      { "message", types.text }
+      { "shipping_date", types.time }
+      { "status", types.text }
+      "PRIMARY KEY (id)"
+    }
+
 }

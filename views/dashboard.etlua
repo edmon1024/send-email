@@ -27,7 +27,7 @@
                  <a href="<%= url_for('send_email') %>" id="send_email" name="send_email">
                    <div class="dashboard-card alert-warning thumbnail">
                      <div class="dashboard-icon">
-                       <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                       <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
                      </div>
                      <div class="dashboard-text">
                        <%- i_.t('message_send_title') %>
@@ -39,8 +39,14 @@
                <div class="col-md-4 col-sm-6 col-xs-12">
                  <a href="<%= url_for('send_email_list') %>" id="report_graphics" name="report_graphics">
                    <div class="dashboard-card alert-info thumbnail">
+                     <% if count_messages > 0 then %>
+                     <div class="dashboard-badge">
+                       <span class="badge"><%- count_messages %></span>
+                     </div>
+                     <% end %>
+
                      <div class="dashboard-icon">
-                       <span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span>
+                       <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                      </div>
                      <div class="dashboard-text">
                        <%- i_.t('message_send_list_title')  %>

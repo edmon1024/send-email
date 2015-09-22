@@ -20,7 +20,7 @@ class MessagesApplication extends lapis.Application
   [send_email_list: "/send_email_list"]: capture_errors =>
     @g_title = i_.t('message_send_list_title')
     @g_route = "send"
-    @email_queue = EmailQueue\select " where status='programmed' or status='paused' or status='ongoing'"
+    @email_queue = Messages\select " where status='programmed' or status='paused' or status='ongoing'"
     render: true
  
   [send_edit: "/send_edit/"]: capture_errors =>

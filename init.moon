@@ -32,6 +32,7 @@ export messagesC = require "controllers.messagesController"
 --Import Data models
 require "models.EmailQueue"
 require "models.EmailResult"
+require "models.Messages"
 
 -- default configuration
 export default_lang = "es"

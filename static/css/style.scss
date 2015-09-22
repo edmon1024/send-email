@@ -186,7 +186,53 @@ html {
         height:50px;
         width:100%;
       }
-     
+  
+      .dashboard {
+
+          margin-top:5%;
+
+          .dashboard-badge {
+            position:absolute;
+            display:inline-block;
+            top:1em;
+            right:1em;
+            .badge {
+              font-size: 1.5em;
+              background-color: brown;
+            }
+          }
+
+          .dashboard-card {
+            height: 15em;
+            position:relative;
+
+            &:hover {
+              opacity: 0.7;
+            }
+
+            .dashboard-icon {
+              position:relative;
+              margin: 0 auto;
+              padding-top:5%;
+              font-size: 5em;
+            }
+
+            .dashboard-text {
+              position:relative;
+              margin:0 auto;
+              font-size:2em;
+            }
+
+          }
+
+          a {
+            &:hover {
+              text-decoration: none;
+            }
+          }
+
+      }
+
     } //Cierra wrapper
 
     #footer {

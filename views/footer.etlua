@@ -1,7 +1,7 @@
-</div> <!-- end wrapper -->
-
 <div class="space"></div>
 <div id="push"></div>
+
+</div> <!-- end wrapper -->
 
 <div id="footer">
       <p><img src="/static/img/delti-logo.png" width="40" height="40">&nbsp;&nbsp;&nbsp; <%- i_.t('footer_text') %></p>

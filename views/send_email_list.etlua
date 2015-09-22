@@ -11,8 +11,8 @@
             <tr>
               <td></td>
               <td><%- i_.t("g_id") %></td>
-              <td><%- i_.t("message_recipients") %></td>
               <td><%- i_.t("message_subject") %></td>
+              <td><%- i_.t("message_recipients") %></td>
               <td><%- i_.t("message_text") %></td>
               <td><%- i_.t("message_shipping_date") %></td>
               <td><%- i_.t("message_status") %></td>
@@ -27,8 +27,8 @@
                     <input type="checkbox" id="check_list[<%- v.id %>]" name="check_list[<%- v.id %>]" value="<%- v.id %>" class="selector" />
                   </td>
                   <td><%= v.id %></td>
-                  <td><%= v.email %></td>
                   <td><%= v.subject %></td>
+                  <td><%= v.recipients %></td>
                   <td><%= v.message %></td>
                   <td><%= v.shipping_date %></td>
                   <td><%= v.status %></td>
