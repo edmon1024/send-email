@@ -1,0 +1,69 @@
+<% render("views.menu") %> 
+<% if errors then %>
+  <% render("views.errorWindow") %>
+<% else %>
+<div class="container" id="workarea">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-2"></div>
+        <div id="send" class="col-md-8" >
+          <form class="form-horizontal" id="sendEmail" action="<%= url_for('send_email_validate') %>" method="POST">
+          <fieldset>
+            <!-- Form Name -->
+            <legend><%- i_.t('message_send_title') %></legend>
+            
+            <!-- Destinatarios -->
+            <div class="form-group">
+              <label id="recipients" class="col-md-1 control-label" for="recipients"><%- i_.t('message_recipients') %></label>  
+            </div>                                                                                                                                         
+            <div class="form-group">
+              <input id="recipients" name="recipients" type="text" placeholder="<%- i_.t('message_recipients') %>" class="form-control input-md" required/>
+            </div>                                                                                                                                         
+            <!--Fin destinatarios-->
+   
+            <!-- Asunto -->
+            <div class="form-group">
+              <label id="subject-title" class="col-md-1 control-label" for="subject"><%- i_.t('message_subject') %></label>  
+            </div>                                                                                                                                         
+            <div class="form-group">
+              <input id="subject" name="subject" type="text" placeholder="<%- i_.t('message_subject') %>" class="form-control input-md" required/>
+            </div>                                                                                                                                         
+            <!--Fin de asunto-->                                                                                                                        
+  
+            <!-- Mensaje -->
+            <div class="form-group">
+              <label id="message-title" class="col-md-1 control-label" for="message"><%- i_.t('message_text') %></label>  
+            </div>                                                                                                                                         
+            <div class="form-group">
+              <!--<input id="message" name="message" type="text" placeholder="<%- i_.t('message_text') %>" class="form-control input-md" required/>-->
+              <textarea id="message" name="message" placeholder="<%- i_.t('message_text') %>" class="form-control input-md" required></textarea>
+            </div>                                                                                                                                         
+            <!--Fin de mensaje-->                                                                                                                        
+           
+            <!-- Button (Double) -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="cancel"></label>
+              <div class="col-md-8">
+                <a href="<%= url_for('dashboard') %>" id="cancel" name="cancel" class="btn btn-danger"><%- i_.t('g_cancel') %></a>
+                <button id="save" name="save" class="btn btn-primary"><%- i_.t('g_save') %></button>
+              </div>
+            </div>
+          </fieldset>
+          </form>
+        </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $("#sendEmail").validate({
+    rules: {
+      recipients: "required",
+      subject: "required",
+      message: "required"
+    }
+  });
+</script>
+<% end %>
+<% render('views.footer') %>

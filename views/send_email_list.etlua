@@ -1,0 +1,83 @@
+<% render("views.menu") %> 
+<div class="container" id="workarea">
+  <form id="send_email_list_form" action="" method="post">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <h1><%- i_.t("message_send_list_title") %></h1> 
+          <table id="scroll_table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+              <td></td>
+              <td><%- i_.t("g_id") %></td>
+              <td><%- i_.t("message_recipients") %></td>
+              <td><%- i_.t("message_subject") %></td>
+              <td><%- i_.t("message_text") %></td>
+              <td><%- i_.t("message_shipping_date") %></td>
+              <td><%- i_.t("message_status") %></td>
+              <td><%- i_.t("table_actions") %></td>
+            </tr>
+            </thead>
+            <tbody>
+            <% if table.getn(email_queue)>0 then %>
+              <% for k,v in pairs(email_queue) do %>
+                <tr>
+                  <td>
+                    <input type="checkbox" id="check_list[<%- v.id %>]" name="check_list[<%- v.id %>]" value="<%- v.id %>" class="selector" />
+                  </td>
+                  <td><%= v.id %></td>
+                  <td><%= v.email %></td>
+                  <td><%= v.subject %></td>
+                  <td><%= v.message %></td>
+                  <td><%= v.shipping_date %></td>
+                  <td><%= v.status %></td>
+                  <td>
+                    <% render('views.application_actions') %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+            </tbody>
+          </table>
+      </div>
+      <div class="col-xs-1"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <!-- Button section -->
+        <div class="form-group">
+          <div class="col-xs-8">
+<input type="hidden" name="hidden"/>
+            <input type="submit" id="erase_message" name="erase_message" class="btn btn-danger" value="<%- i_.t('g_erase') %>">
+            <a href="<%= url_for('send_email') %>" id="send_email" name="send_email" class="btn btn-primary"><%- i_.t('g_create') %></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-1"></div> 
+    </div>
+  </div>
+  <div id="error"></div>
+  </form>
+</div>
+<script>
+  //Validación para checkboxes
+  $.validator.addMethod("at_least_one", function(value,element) {
+    if( $('.selector:checked').length > 0 ) { return true; }
+    return false;
+  }, $.validator.format('<%- i_.t("g_check_one") %>') );
+
+  $('#send_email_list_form').validate({
+    focusInvalid: false,
+    ignore: "",
+    rules: {
+      hidden: {
+        'at_least_one': true
+      }
+    }
+  });
+</script>
+<% render('views.footer') %>

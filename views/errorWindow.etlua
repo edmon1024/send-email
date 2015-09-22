@@ -1,0 +1,19 @@
+<% if errors then %>
+<!-- Error window -->
+  <div class="col-md-12">
+    <div class="col-md-4"></div>
+    <div class="col-md-4" id="error">
+        <div class="text-center">
+        <h4><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><%- i_.t 'error_title' %></h4>
+        <ul class="list-group">
+          <% for key,val in pairs(errors) do %>
+            <li class="list-group-item list-group-item-danger"><%- val %></li>
+          <% end %>
+        </ul>
+        <a href="<%- url_for(dashboard) %>"
+          class="btn btn-default" id="accept"><%- i_.t "g_accept" %></a>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+<% end %>

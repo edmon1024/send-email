@@ -1,0 +1,3 @@
+.gitignore
+
+: foreach *.scss |> sass --no-cache %f %o |> %B.css | %O.css.map

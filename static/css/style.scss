@@ -1,0 +1,204 @@
+@import '../bootstrap/css/bootstrap.css';
+
+html {
+
+  height: 100%;
+
+  body {
+    height:100%;
+
+    .panel-primary {
+      width: 70%;
+      margin: 0 auto 20px;
+    }
+
+    #wrapper {
+      min-height: 100%;
+      height: auto !important;
+      height: 100%;
+      margin: 0 auto -60px;
+
+      .brand-img {
+        height: 25px;
+        width: 25px;
+      }
+
+      #push {
+        height:60px;
+      }
+
+      //Login window
+      #login {
+        background-color : #f9f9f9;
+        margin-top: 100px;
+        border-radius: 10px;
+        padding: 20px;
+        //login form
+        form  {
+          div .form-group {
+            padding-left: 20px;
+            padding-right: 20px;
+          }
+          input, button {
+            margin: 5px 0px 5px 0px;
+          }
+          label {
+            margin-top: 5px;
+          }
+        }
+      }
+      
+      //Form style
+      #edit-user {
+        background-color : #f9f9f9;
+        border-radius: 10px;
+        margin-top: 50px;
+        padding: 20px;
+        h3 {
+          text-align: center;
+        }
+        //login form
+        form  {
+          div .form-group {
+            padding-left: 20px;
+            padding-right: 20px;
+          }
+          input, button {
+            margin: 5px 0px 5px 0px;
+          }
+          label {
+            margin-top: 5px;
+          }
+        }
+      }
+
+      #workarea {
+        margin-top: 50px;
+      }
+  
+      //Error window messages format
+      #error {
+        background-color : #F4766F;
+        margin-top: 100px;
+        border-radius: 10px;
+        h4 {
+          font-weight: bold;
+        }
+        #accept {
+          margin: 0px 0px 10px 0px;
+        }
+      }
+    
+      #send {
+        label {
+          text-align: left;
+        }
+        textarea { 
+          width: 100%;
+          height: 150px;
+        }
+      }
+
+      //Menu and navigation bars
+      .navbar-default {
+        background-color: #337ab7;
+        border-color: #E7E7E7;
+        .navbar-brand {
+          color: #D8D8D8;
+        }
+        .navbar-brand:hover {
+          color: #FFFFFF;
+        }
+        .navbar-nav {
+          li {
+            a {
+              color: #F2F2F2;
+            }
+            a:hover, a:focus {
+              color: #FFFFFF;
+              background-color: #0B2161;
+            }
+  
+          .open {
+            .dropdown-menu {
+              background-color: white;
+            }
+          }
+  
+            .dropdown-menu {
+              li {
+                span {
+                  padding: 3px 20px;
+                  color: gray;
+                }
+                a {
+                  color: black;
+                }
+                a:hover, a:focus {
+                  color: white;
+                }
+              }
+            }
+          }
+          .active {
+            a, a:hover, a:focus {
+              color: #FFFFFF;
+              background-color: #0A3E6B;
+            }
+          }
+        }
+      }
+   
+      .normal-text {
+        font-weight: normal;
+      }
+   
+      .navbar {
+        padding-right: 15px;
+      }
+  
+      #languages_combo {
+        margin-top: 7px;
+        margin-right: 7px;
+      }
+  
+      #user_combo {
+        margin-top: 7px;
+        margin-right: 7px;
+      }
+      //DataTables styles
+      .table-actions {
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+      
+      #modal-dialog {
+        #modal-close {
+          color: white;
+        }
+      }
+      
+      #cancel {
+        color: white;
+      }
+
+      .space {
+        height:50px;
+        width:100%;
+      }
+     
+    } //Cierra wrapper
+
+    #footer {
+      background-color: #337ab7;
+      border-color: #E7E7E7;
+      color: #ffffff;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      height: 60px;
+      text-align:center;
+    }
+  
+  } // Cierra body
+
+} // Cierra html

@@ -1,0 +1,3 @@
+<% render("views.menu") %>
+<% render("views.errorWindow") %>
+<% render('views.footer') %>

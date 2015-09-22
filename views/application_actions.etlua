@@ -1,0 +1,17 @@
+<% if g_route == "send" then %>
+  <a href="<%= url_for(routeHelper:get_application(g_route).."_edit") %>">
+    <span class="glyphicon glyphicon-pencil table-actions" aria-hidden="true" title="<%- i_.t('g_edit')  %>"></span>
+  </a>
+  <a href="<%= url_for(routeHelper:get_application(g_route).."_erase") %>">
+    <span class="glyphicon glyphicon-trash table-actions" aria-hidden="true" title="<%- i_.t('g_erase')  %>"></span>
+  </a>
+    <a href="<%= url_for(routeHelper:get_application(g_route).."_paused") %>">
+      <span class="glyphicon glyphicon-pause table-actions" aria-hidden="true" title="<%- i_.t('g_paused')  %>"></span>
+    </a>
+    <a href="<%= url_for(routeHelper:get_application(g_route).."_resume") %>">
+      <span class="glyphicon glyphicon-play table-actions" aria-hidden="true" title="<%- i_.t('g_resume')  %>"></span>
+    </a>
+<% elseif g_route == "dashboard"then %>
+    <a href="#">
+    </a>
+<% end %>

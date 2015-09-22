@@ -1,0 +1,184 @@
+<% render("views.menu") %> 
+
+<form class="form-horizontal" id="sendEmailForm" action="" method="POST">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Send Email</legend>
+
+<div class="panel panel-primary"><!--Start panel of events-->
+  <div class="panel-heading">
+    <h3 class="panel-title">Send Message</h3>
+  </div>
+  <div class="panel-body">
+    <!-- Select Basic -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="event">Título</label>
+      <div class="col-md-4">
+      </div>
+    </div>
+    <!-- Select Basic -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="priority"><%- i_.t('message_priority_title') %></label>
+      <div class="col-md-4">
+        <select id="priority" name="priority" class="form-control">
+          <option value="4"><%- i_.t('message_priority_low') %></option>
+          <option value="3"><%- i_.t('message_priority_medium') %></option>
+          <option value="2"><%- i_.t('message_priority_high') %></option>
+          <option value="1"><%- i_.t('message_priority_urgent') %></option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+</div><!-- End panel of events-->
+
+<div class="panel panel-primary"><!--Start panel of messages-->
+  <div class="panel-heading">
+    <h3 class="panel-title"><%- i_.t('message_predefined_title') %></h3>
+  </div>
+  <div class="panel-body">
+    <!-- Select Basic -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="message_predefined"><%- i_.t('message_predefined_title') %></label>
+      <div class="col-md-4">
+        <select id="message_predefined_list" name="message_predefined_list" class="form-control" onchange="text(this)">
+          <option selected="true" disabled="disabled" ><%- i_.t('message_select_predefined') %></option>
+        </select>
+      </div>
+    </div>
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="message">Mensaje</label>
+      <div class="col-md-4">
+        <textarea id="message" name="message" type="message" placeholder="mensaje" class="form-control input-md"  required/></textarea>
+      </div>
+    </div>
+  </div>
+</div><!-- End panel of messages-->
+
+<div id="div-receiver" class="panel panel-primary"><!--Start panel of Receiver-->
+  <div class="panel-heading">
+    <h3 class="panel-title">Destinatarios</h3>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="event"><%- i_.t('message_add_group') %></label>
+      <div class="col-md-4">
+        <select id="group" name="group" class="form-control" onchange="recipients(this)">
+          <option selected="true" disabled="disabled" ><%- i_.t('message_add_group') %></option>
+        </select>
+      </div>
+    </div>
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="message">destinatarios</label>
+      <div class="col-md-4">
+        <textarea id="receiver" name="receiver" type="text" placeholder="Destinatarios" class="form-control input-md"  required/></textarea>
+<!--            <select id="receiver" name="receiver" multiple class="form-control" required/>-->
+      </div>
+    </div>
+  </div>
+</div><!-- End panel of receiver-->
+
+<div class="panel panel-primary"><!--Start panel of date-->
+  <div class="panel-heading">
+    <h3 class="panel-title"></h3>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="message"><%- i_.t('message_send_now') %></label>
+      <div class="col-md-4">
+        <input type="radio" id="send_pro" name="send_pro" value="1" class="form-control" onchange="enableDate(this.value);" checked>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="message"><%- i_.t('message_send_programmed') %></label>
+      <div class="col-md-4">
+        <input type="radio" id="send_pro" name="send_pro" value="2" class="form-control" onchange="enableDate(this.value);">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="message"><%- i_.t('message_date_title') %></label>  
+      <div class="col-md-4">
+        <input id="datetimepicker" name="datetimepicker" class="form-control" type="datetimepicker" value="" disabled required>
+      </div>
+    </div>
+  </div>
+</div><!-- End panel of date-->
+
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="cancel"></label>
+  <div class="col-md-8">
+    <a href="<%= url_for('dashboard') %>" id="cancel" name="cancel" class="btn btn-danger"><%- i_.t('g_cancel') %></a>
+    <button id="save" name="save" class="btn btn-primary"><%- i_.t('g_send') %></button>
+  </div>
+</div>
+
+  </fieldset>
+</form>
+
+<script>
+   //Validación para checkboxes
+   $.validator.addMethod("at_least_one", function(value,element) {
+     if( $('.selector:checked').length > 0 ) { return true; }
+     return false;
+   }, $.validator.format('<%- i_.t("g_check_one") %>') );
+ 
+   $('#sendMessageForm').validate({
+     focusInvalid: false,
+     ignore: "",
+     rules: {
+       message: "required",
+       receiver: "required",
+       datetimepicker: "required",
+       hidden: { 'at_least_one': true }
+     }
+   });
+
+  jQuery('#datetimepicker').datetimepicker({
+   lang:'<%= session.lang %>',
+   timepicker:true,
+   format:'Y.m.d H:i',
+   step:10,
+   minDate:0,
+   minTime:0
+  });
+
+  function enableDate(value)
+  {
+    if(value=="1")
+    {
+      // disable
+      document.getElementById("datetimepicker").disabled=true;
+      document.getElementById("datetimepicker").value="";
+    }else if(value=="2"){
+      // enable
+      document.getElementById("datetimepicker").disabled=false;
+    }
+  }
+
+  function text(msj){
+    var message = msj.value;
+    document.getElementById("message").value= message;
+  }
+
+  function recipients(g){
+    var groups = document.getElementById("receiver").value + g.value + ",";
+    document.getElementById("receiver").value = groups;
+    $("#group :selected").hide();
+    
+  }
+
+  function delete_r(id){
+    if ( id == "d1"){
+      $("#receiver :selected").remove();
+    }
+    if ( id == "d2" ){
+      document.getElementById("receiver").innerHTML="";
+      document.getElementById('add_receiver').style.display = "show";
+    }
+  }
+</script>
+<% render('views.footer') %>
