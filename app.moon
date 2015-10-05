@@ -22,7 +22,7 @@ class extends lapis.Application
     @g_route = "dashboard"
     @count_messages = messagesC\count_emails!
     render: true
-
+    
   [user_create: "/user_create"]: =>
     @g_title = "user create"
     @g_route = "dashboard"

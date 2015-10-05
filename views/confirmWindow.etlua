@@ -5,7 +5,7 @@
 <fieldset>
 <!-- Form Name -->
 <legend><%- i_.t('g_confirm') %>
-<% if string.match(action,"^erase") then %>
+<% if action == "erase_send" then %>
  <%- i_.t('g_erase') %>
 <% end %>
 <% if action == "paused_send" then %>
@@ -18,15 +18,15 @@
 
 <p>
 <% if action == "erase_send" then %>
-  <span class="confirm_text"><%- i_.t('send_confirm_delete') %></span>
+  <span class="confirm_text"><%- i_.t('message_send_confirm_delete') %></span>
   <input type=hidden name=action value=erase_send>
 <% end %>
 <% if action == "paused_send" then %>
-  <span class="confirm_text"><%- i_.t('send_confirm_paused') %></span>
+  <span class="confirm_text"><%- i_.t('message_send_confirm_paused') %></span>
   <input type=hidden name=action value=paused_send>
 <% end %>
 <% if action == "resume_send" then %>
-  <span class="confirm_text"><%- i_.t('send_confirm_resume') %></span>
+  <span class="confirm_text"><%- i_.t('message_send_confirm_resume') %></span>
   <input type=hidden name=action value=resume_send>
 <% end %>
 </p>
@@ -50,10 +50,8 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="cancel"></label>
   <div class="col-md-8">
-   <% if action == "erase_send" then %>
-     <a href="<%- url_for('dashboard') %>"id="cancel" name="cancel" class="btn btn-danger"><%- i_.t('g_cancel') %></a>
+     <a href="<%- url_for('send_email_list') %>"id="cancel" name="cancel" class="btn btn-danger"><%- i_.t('g_cancel') %></a>
      <input type="submit" id="confirm" name="g_confirm" class="btn btn-primary" value="<%- i_.t('g_confirm') %>"/>
-   <% end %>
   </div>
 </div>
 

@@ -20,6 +20,8 @@ g_action: "Acción"
 g_add: "Agregar"
 g_back: "Regresar"
 g_send: "Enviar"
+g_paused: "Pausar"
+g_resume: "Reanudar"
 
 table_actions: "Acciones"
 
@@ -45,5 +47,9 @@ message_text: "Mensaje"
 message_shipping_date: "Fecha de envío"
 message_status: "Status"
 message_email_valid: "Introduzca un correo electrónico válido"
+message_send_confirm_delete: "¿Está seguro de borrar el o los mensajes?"
+message_send_confirm_paused: "¿Está seguro de pausar el o los mensajes?"
+message_send_confirm_resume: "¿Está seguro de reanudar el o los mensajes?"
+
 
 footer_text: "© 2015 Copyright - Meganúcleo, S.A. de C.V. Todos los derechos reservados."

@@ -20,6 +20,11 @@ class VB_layout extends Widget
         element "script", src: "/static/js/DataTables/jquery.dataTables.columnFilter.js"
         element "script", src: "/static/js/jq-validate/localization/messages_"..@session.lang..".js"
         element "script", src: "/static/DateTimePicker/jquery.datetimepicker.js"
+        if @session.lang == "es"
+          element "script", src: "/static/dTable/scrollDataTable-ES.js"
+        if @session.lang == "en"
+          element "script", src: "/static/dTable/scrollDataTable-EN.js"
+
         element "meta", name: "viewport", content: "width=device-width, initial-scale=1"
         element "meta", charset: "UTF-8"
  

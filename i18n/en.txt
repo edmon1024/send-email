@@ -25,6 +25,8 @@ g_add: "Add"
 g_back: "Back"
 g_play: "Play"
 g_send: "Send"
+g_paused: "Paused"
+g_resume: "Resume"
 
 table_actions: "Actions"
 
@@ -45,5 +47,10 @@ message_text: "Message"
 message_shipping_date: "Shipping_date"
 message_status: "Status"
 message_email_valid: "Enter a valid email"
+message_send_confirm_delete: "Are you sure to erase the (s)?"
+message_send_confirm_paused: "¿Are you sure to paused the user(s)?"
+message_send_confirm_resume: "Are you sure to resume the user(s)?"
+
+
 
 footer_text: "© 2015 Copyright - Meganúcleo, S.A. de C.V. All rights reserved."

@@ -10,7 +10,7 @@ config "production", ->
     password "email_2015"
     database "email"
   session_name "email"
-  secret "3m411_2015"
+  secret "3m4112015"
 
 config "development", ->
   num_workers 1
@@ -22,4 +22,4 @@ config "development", ->
     password "email_2015"
     database "email"
   session_name "email"
-  secret "3m411_2015"
+  secret "3m4112015"

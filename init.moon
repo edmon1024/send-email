@@ -28,6 +28,7 @@ export filesystem = require "utils.filesystem"
 --export usersC = require "controllers.usersController"
 --export logC = require "controllers.logController"
 export messagesC = require "controllers.messagesController"
+export permsC = require "controllers.permissionsController"
 
 --Import Data models
 require "models.EmailQueue"

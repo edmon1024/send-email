@@ -1,6 +1,6 @@
 <% render("views.menu") %> 
 <div class="container" id="workarea">
-  <form id="send_email_list_form" action="" method="post">
+  <form id="send_email_list_form" action="<%- url_for('send_action') %>" method="post">
   <div class="row">
     <div class="col-xs-12">
       <div class="col-xs-1"></div>
@@ -22,20 +22,21 @@
             <tbody>
             <% if table.getn(email_queue)>0 then %>
               <% for k,v in pairs(email_queue) do %>
-                <tr>
-                  <td>
-                    <input type="checkbox" id="check_list[<%- v.id %>]" name="check_list[<%- v.id %>]" value="<%- v.id %>" class="selector" />
-                  </td>
-                  <td><%= v.id %></td>
-                  <td><%= v.subject %></td>
-                  <td><%= v.recipients %></td>
-                  <td><%= v.message %></td>
-                  <td><%= v.shipping_date %></td>
-                  <td><%= v.status %></td>
-                  <td>
-                    <% render('views.application_actions') %>
-                  </td>
-                </tr>
+                <% session.registry = v %>
+                  <tr>
+                    <td>
+                      <input type="checkbox" id="check_list[<%- v.id %>]" name="check_list[<%- v.id %>]" value="<%- v.id %>" class="selector" />
+                    </td>
+                    <td><%= v.id %></td>
+                    <td><%= v.subject %></td>
+                    <td><%= v.recipients %></td>
+                    <td><%= v.message %></td>
+                    <td><%= v.shipping_date %></td>
+                    <td><%= v.status %></td>
+                    <td>
+                      <% render('views.application_actions') %>
+                    </td>
+                  </tr>
               <% end %>
             <% end %>
             </tbody>
@@ -52,7 +53,9 @@
         <div class="form-group">
           <div class="col-xs-8">
 <input type="hidden" name="hidden"/>
-            <input type="submit" id="erase_message" name="erase_message" class="btn btn-danger" value="<%- i_.t('g_erase') %>">
+            <input type="submit" id="erase_send" name="erase_send" class="btn btn-danger" value="<%- i_.t('g_erase') %>">
+            <input type="submit" id="paused_send" name="paused_send" class="btn btn-warning" value="<%- i_.t('g_paused') %>">
+            <input type="submit" id="resume_send" name="resume_send" class="btn btn-success" value="<%- i_.t('g_resume') %>">
             <a href="<%= url_for('send_email') %>" id="send_email" name="send_email" class="btn btn-primary"><%- i_.t('g_create') %></a>
           </div>
         </div>

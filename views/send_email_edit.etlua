@@ -7,22 +7,23 @@
     <div class="col-md-12">
       <div class="col-md-2"></div>
         <div id="send" class="col-md-8" >
-
-          <% email_queue = EmailQueue:find(params.send_id) %>
+          <% dumpvar.print(params) %>
+          <% msg = Messages:find(params.message_id) %>
           
           <form class="form-horizontal" id="sendEmailEdit" action="<%= url_for('send_email_validate_edit') %>" method="POST">
           <fieldset>
             <!-- Form Name -->
             <legend><%- i_.t('message_send_title') %></legend>
             
-            <input type="hidden" name="id" value="<%- email_queue.id %>">
+            <input type="hidden" name="id" value="<%- msg.id %>">
+            <input type="hidden" name="name" value="<%- msg.name %>">
 
             <!-- Destinatarios -->
             <div class="form-group">
               <label id="recipients" class="col-md-1 control-label" for="recipients"><%- i_.t('message_recipients') %></label>  
             </div>                                                                                                                                         
             <div class="form-group">
-              <input id="recipients" name="recipients" value="<%- email_queue.recipients %>" type="text" placeholder="<%- i_.t('message_recipients') %>" class="form-control input-md" required/>
+              <input id="recipients" name="recipients" value="<%- msg.recipients %>" type="text" placeholder="<%- i_.t('message_recipients') %>" class="form-control input-md" required/>
             </div>                                                                                                                                         
             <!--Fin destinatarios-->
    
@@ -31,7 +32,7 @@
               <label id="subject-title" class="col-md-1 control-label" for="subject"><%- i_.t('message_subject') %></label>  
             </div>                                                                                                                                         
             <div class="form-group">
-              <input id="subject" name="subject" type="text" value="<%- email_queue.subject %>" placeholder="<%- i_.t('message_subject') %>" class="form-control input-md" required/>
+              <input id="subject" name="subject" type="text" value="<%- msg.subject %>" placeholder="<%- i_.t('message_subject') %>" class="form-control input-md" required/>
             </div>                                                                                                                                         
             <!--Fin de asunto-->                                                                                                                        
   
@@ -41,10 +42,31 @@
             </div>                                                                                                                                         
             <div class="form-group">
               <!--<input id="message" name="message" type="text" placeholder="<%- i_.t('message_text') %>" class="form-control input-md" required/>-->
-              <textarea id="message" name="message" value="<%- email_queue.message %>" placeholder="<%- i_.t('message_text') %>" class="form-control input-md" required></textarea>
+              <textarea id="message" name="message" placeholder="<%- i_.t('message_text') %>" class="form-control input-md" required><%- msg.message %></textarea>
             </div>                                                                                                                                         
             <!--Fin de mensaje-->                                                                                                                        
            
+      <!--section date-->     
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="message"><%- i_.t('message_send_now') %></label>
+          <div class="col-md-4">
+            <input type="radio" id="send_pro" name="send_pro" value="1" class="form-control" onchange="enableDate(this.value);" checked>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="message"><%- i_.t('message_send_programmed') %></label>
+          <div class="col-md-4">
+            <input type="radio" id="send_pro" name="send_pro" value="2" class="form-control" onchange="enableDate(this.value);">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="message"><%- i_.t('message_date_title') %></label>  
+          <div class="col-md-4">
+            <input id="datetimepicker" name="datetimepicker" class="form-control" type="datetimepicker" value="" disabled required>
+          </div>
+        </div>
+      <!--end section date-->
+
             <!-- Button (Double) -->
             <div class="form-group">
               <label class="col-md-4 control-label" for="cancel"></label>
@@ -62,13 +84,58 @@
 </div>
 
 <script>
+  jQuery.validator.addMethod(
+      "multiemails",
+       function(value, element) {
+           if (this.optional(element)) // return true on optional element
+               return true;
+           var emails = value.split(/[;,]+/); // split element by , and ;
+           valid = true;
+           for (var i in emails) {
+               value = emails[i];
+               valid = valid &&
+                       jQuery.validator.methods.email.call(this, $.trim(value), element);
+           }
+           return valid;
+       },
+     jQuery.validator.messages.multiemails
+  );
+
   $("#sendEmailEdit").validate({
     rules: {
-      recipients: "required",
+      recipients: { required:true, multiemails:true },
       subject: "required",
-      message: "required"
-    }
+      message: "required",
+      datetimepicker: "required"
+    },
+    messages: {
+      recipients: {
+        multiemails: "<%- i_.t('message_email_valid') %>"
+      }
+   }
   });
+
+  jQuery('#datetimepicker').datetimepicker({
+   lang:'<%= session.lang %>',
+   timepicker:true,
+   format:'Y.m.d H:i',
+   step:10,
+   minDate:0,
+   minTime:0
+  });
+
+  function enableDate(value)
+  {
+    if(value=="1")
+    {
+      // disable
+      document.getElementById("datetimepicker").disabled=true;
+      document.getElementById("datetimepicker").value="";
+    }else if(value=="2"){
+      // enable
+      document.getElementById("datetimepicker").disabled=false;
+    }
+  }
 </script>
 <% end %>
 <% render('views.footer') %>
