@@ -10,7 +10,7 @@
          <div class="form-group" align="center">
            <div class="row dashboard">
 
-               <div class="col-md-4 col-sm-6 col-xs-12">
+<!--               <div class="col-md-4 col-sm-6 col-xs-12">
                  <a href="#" id="message_send" name="message_send">
                    <div class="dashboard-card alert-success thumbnail">
                      <div class="dashboard-icon">
@@ -19,11 +19,11 @@
                      <div class="dashboard-text">
                        <%- i_.t('contact_list_title') %>
                      </div>
-                   </div><!--cierra dashboard-card-->
-                 </a><!--cierra link-->
-               </div><!--cierra la columna-->
+                   </div>--><!--cierra dashboard-card-->
+<!--                 </a>--><!--cierra link-->
+<!--               </div>--><!--cierra la columna-->
 
-               <div class="col-md-4 col-sm-6 col-xs-12">
+               <div class="col-md-6 col-sm-6 col-xs-12">
                  <a href="<%= url_for('send_email') %>" id="send_email" name="send_email">
                    <div class="dashboard-card alert-warning thumbnail">
                      <div class="dashboard-icon">
@@ -36,7 +36,7 @@
                  </a><!--cierra link-->
                </div><!--cierra la columna-->
 
-               <div class="col-md-4 col-sm-6 col-xs-12">
+               <div class="col-md-6 col-sm-6 col-xs-12">
                  <a href="<%= url_for('send_email_list') %>" id="report_graphics" name="report_graphics">
                    <div class="dashboard-card alert-info thumbnail">
                      <% if count_messages > 0 then %>
