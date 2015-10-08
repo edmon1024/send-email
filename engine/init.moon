@@ -4,7 +4,7 @@ lib_path = "utils/"
 package.path ..= "#{lib_path}?;#{lib_path}?.lua;#{lib_path}?.so"
 
 --Including utils
-require "postgres"
+--require "postgres"
 --require "luasql.postgres"
 export db2 = require "db2"
 export dumpvar = require "dumpvar"

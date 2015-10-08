@@ -32,9 +32,8 @@ scheduler.finished = () ->
   cur = db2.exec scheduler.q!
   row = cur\fetch {}, "a"
   while row
-    os.execute 'echo "Prueba de correo desde postfix" | mail -s "Test Postfix" edmon.af@gmail.com'
+    print "send message"
   return scheduler.end
 
 dumpvar.print scheduler.finished!
---dumpvar.print scheduler.filter!
 scheduler.close!
